@@ -4,6 +4,7 @@ import * as containerregistry from '@pulumi/azure-native/containerregistry';
 import * as docker from '@pulumi/docker';
 
 import * as containerinstance from '@pulumi/azure-native/containerinstance';
+import * as cache from "@pulumi/azure-native/cache";
 
 // Import the configuration settings for the current stack.
 const config = new pulumi.Config();
@@ -121,3 +122,15 @@ export const ip = containerGroup.ipAddress.apply(addr => addr!.ip!)
 export const url = containerGroup.ipAddress.apply(
   addr => `http://${addr!.fqdn!}:${containerPort}`
 )
+
+const redisCache = new cache.Redis("redisCache", {
+  resourceGroupName: resourceGroup.name,
+  location: resourceGroup.location.apply(location => location),
+  sku: {
+      name: "Basic",
+      family: "C0",
+      capacity: 1,
+  },
+});
+
+export const hostname = redisCache.hostName;
