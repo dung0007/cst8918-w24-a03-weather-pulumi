@@ -128,7 +128,7 @@ const redisCache = new cache.Redis("redisCache", {
   location: resourceGroup.location.apply(location => location),
   sku: {
       name: "Basic",
-      family: "C0",
+      family: "C",
       capacity: 1,
   },
 });
