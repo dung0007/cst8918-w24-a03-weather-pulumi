@@ -6,4 +6,5 @@ config:
   cst8918-a03-infra:imageTag: v0.2.0
   cst8918-a03-infra:memory: '2'
   cst8918-a03-infra:prefixName: 'cst8918a03rung0018'
+  cst8918-a03-infra:WEATHER_API_KEY: '6bd0e95236f9051346690f791b1b112e'
   cst8918-a03-infra:publicPort: '80'

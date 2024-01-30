@@ -9,6 +9,7 @@ import * as containerinstance from '@pulumi/azure-native/containerinstance';
 const config = new pulumi.Config();
 const appPath = config.get('appPath') || '../';
 const prefixName = config.get('prefixName') || 'cst8918-a03-rung0018';
+const WEATHER_API_KEY = config.get('WEATHER_API_KEY')
 const imageName = prefixName;
 const imageTag = config.get('imageTag') || 'latest';
 const containerPort = config.getNumber('containerPort') || 80;
@@ -90,7 +91,7 @@ const image = new docker.Image(`${prefixName}-image`, {
             },
             {
               name: 'WEATHER_API_KEY',
-              value: '6bd0e95236f9051346690f791b1b112e'
+              value: `${WEATHER_API_KEY}`
             }
           ],
           resources: {
